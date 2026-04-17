@@ -2,16 +2,31 @@ import { useState } from "react";
 import frameworkData from "./framework.json";
 
 export default function FrameworkListSearchFilter() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
+  /* Inisialisasi DataForm sesuai instruksi dosen */
+  const [dataForm, setDataForm] = useState({
+    searchTerm: "",
+    selectedTag: "",
+  });
 
-  const _searchTerm = searchTerm.toLowerCase();
+  /* Inisialisasi Handle perubahan nilai input form sesuai instruksi dosen */
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
+  };
+
+  /* Logic Search & Filter (Tetap pakai logic sebelumnya, cuma variabelnya ambil dari dataForm) */
+  const _searchTerm = dataForm.searchTerm.toLowerCase();
   const filteredFrameworks = (frameworkData || []).filter((framework) => {
     const matchesSearch =
       (framework.name || "").toLowerCase().includes(_searchTerm) ||
       (framework.description || "").toLowerCase().includes(_searchTerm);
 
-    const matchesTag = selectedTag ? (framework.tags || []).includes(selectedTag) : true;
+    const matchesTag = dataForm.selectedTag 
+      ? (framework.tags || []).includes(dataForm.selectedTag) 
+      : true;
 
     return matchesSearch && matchesTag;
   });
@@ -24,7 +39,6 @@ export default function FrameworkListSearchFilter() {
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 font-sans text-neutral-900">
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SECTION - Hanya muncul sekali di paling atas */}
         <header className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-neutral-950 mb-3">
             Explore Frameworks
@@ -34,20 +48,23 @@ export default function FrameworkListSearchFilter() {
           </p>
         </header>
 
-        {/* SEARCH & FILTER SECTION */}
         <div className="flex flex-col gap-4 mb-12">
+          {/* Input Search dengan penambahan properti name dan handleChange */}
           <input
             type="text"
             name="searchTerm"
+            value={dataForm.searchTerm}
             placeholder="Search framework..."
             className="w-full h-14 px-5 rounded-xl border border-neutral-200 bg-white shadow-sm focus:border-neutral-400 focus:ring-0 outline-none transition text-lg"
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleChange}
           />
 
+          {/* Select Tag dengan penambahan properti name dan handleChange */}
           <select
             name="selectedTag"
+            value={dataForm.selectedTag}
             className="w-full h-14 px-5 rounded-xl border border-neutral-200 bg-white shadow-sm appearance-none focus:border-neutral-400 focus:ring-0 outline-none cursor-pointer text-lg text-neutral-800"
-            onChange={(e) => setSelectedTag(e.target.value)}
+            onChange={handleChange}
           >
             <option value="">Framework</option>
             {allTags.map((tag, index) => (
@@ -58,7 +75,6 @@ export default function FrameworkListSearchFilter() {
           </select>
         </div>
 
-        {/* GRID LIST SECTION - Mapping menggunakan filteredFrameworks */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredFrameworks.map((item, index) => (
             <div 
@@ -111,10 +127,9 @@ export default function FrameworkListSearchFilter() {
           ))}
         </div>
 
-        {/* FEEDBACK JIKA KOSONG */}
         {filteredFrameworks.length === 0 && (
           <div className="text-center py-24 text-neutral-400 border-2 border-dashed border-neutral-200 rounded-3xl mt-12">
-            <p className="text-xl font-medium">No frameworks found for "{searchTerm}"</p>
+            <p className="text-xl font-medium">No frameworks found for "{dataForm.searchTerm}"</p>
           </div>
         )}
       </div>
