@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 import "./assets/tailwind.css";
+// import ProductDetail from "./pages/ProductsDetail";
 
 // import Dashboard from "./pages/Dashboard";
 // import Orders from "./pages/Orders";
@@ -16,6 +17,8 @@ import "./assets/tailwind.css";
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
 const Orders = React.lazy(() => import("./pages/Orders"))
 const Customers = React.lazy(() => import("./pages/Customer"))
+const Products = React.lazy(() => import("./pages/Products"))
+const ProductDetail = React.lazy(() => import("./pages/ProductsDetail"))
 const ErrorPage = React.lazy(() => import("./components/ErrorPage"))
 const MainLayout = React.lazy(() => import("./layouts/MainLayout"))
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
@@ -38,6 +41,8 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/customers" element={<Customers />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetail />} /> 
             <Route path="/error-400" element={<Error400 />} />
             <Route path="/error-401" element={<Error401 />} />
             <Route path="/error-403" element={<Error403 />} />
