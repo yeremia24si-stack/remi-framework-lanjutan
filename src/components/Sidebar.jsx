@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   MdDashboard, MdShoppingCart, MdPeople,
-  MdErrorOutline, MdWarning
+  MdErrorOutline, MdWarning, MdWidgets
 } from "react-icons/md";
 
 const menuItems = [
@@ -9,6 +9,7 @@ const menuItems = [
   { icon: MdShoppingCart, label: "Order List", path: "/orders" },
   { icon: MdPeople, label: "Customers", path: "/customers" },
   { icon: MdPeople, label: "Products", path: "/products" },
+  { icon: MdWidgets, label: "Components", path: "/components" },
   { icon: MdErrorOutline, label: "Error 400", path: "/error-400" },
   { icon: MdWarning, label: "Error 401", path: "/error-401" },
   { icon: MdErrorOutline, label: "Error 403", path: "/error-403" },

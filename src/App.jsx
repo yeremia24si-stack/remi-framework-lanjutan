@@ -25,6 +25,7 @@ const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
 const Login = React.lazy(() => import("./pages/auth/Login"))
 const Register = React.lazy(() => import("./pages/auth/Register"))
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"))
+const Components = React.lazy(() => import("./pages/Components"))
 
 // Halaman error
 const Error400 = () => <ErrorPage code="400" description="Bad Request" />;
@@ -43,6 +44,7 @@ function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetail />} /> 
+            <Route path="/components" element={<Components />} />
             <Route path="/error-400" element={<Error400 />} />
             <Route path="/error-401" element={<Error401 />} />
             <Route path="/error-403" element={<Error403 />} />
