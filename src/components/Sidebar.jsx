@@ -10,6 +10,7 @@ const menuItems = [
   { icon: MdPeople, label: "Customers", path: "/customers" },
   { icon: MdPeople, label: "Products", path: "/products" },
   { icon: MdWidgets, label: "Components", path: "/components" },
+  { icon: MdWidgets, label: "Fitur XYZ", path: "/fitur-xyz" },
   { icon: MdErrorOutline, label: "Error 400", path: "/error-400" },
   { icon: MdWarning, label: "Error 401", path: "/error-401" },
   { icon: MdErrorOutline, label: "Error 403", path: "/error-403" },
