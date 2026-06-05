@@ -102,7 +102,7 @@ export default function Header() {
           {/* PROFILE */}
           <div className="flex items-center space-x-3 border-l border-gray-100 pl-4 ml-2">
             <span className="text-gray-600 text-sm dark:text-white">
-              Hello, <b>Yeremia Zai</b>
+              Hai, <b>Yeremia Zai</b>
             </span>
             <img
               src="/img/Pictures4.png"
